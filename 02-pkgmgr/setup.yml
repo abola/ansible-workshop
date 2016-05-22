@@ -39,6 +39,7 @@
 
     - name: install php-fpm and php-mysql
       apt: name={{ item }} state=present
+      # loop 上面的 {{ item }} 
       with_items:
         - php7.0-fpm
         - php7.0-mysql
