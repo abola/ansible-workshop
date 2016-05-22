@@ -4,18 +4,18 @@
   vars:
     hostname: mywordpress
     wordpress_version: 4.4.2
-    wordpress_parent_path: /usr/share
+    wordpress_parent_path: /var/www/html
     wordpress_path:        "{{ wordpress_parent_path }}/wordpress"
-    wordpress_owner: www-data
-    wordpress_group: www-data
+    wordpress_owner: www
+    wordpress_group: www
 
   tasks:
     - name: ==> 0 - add host info
-      lineinfile: dest=/etc/hosts line="10.0.0.10  {{ hostname }}" state=present
+      lineinfile: dest=/etc/hosts line="192.168.56.102  {{ hostname }}" state=present
 
 
     - name: ==> 1 - add PPA of php7 (community)
-      apt_repository: repo="ppa:ondrej/php"
+      yum_repository: repo="ppa:ondrej/php"
 
 
     - debug: msg="==> 2 - add PPA of nginx (official)"
